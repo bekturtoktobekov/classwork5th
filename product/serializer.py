@@ -61,18 +61,6 @@ class ReviewCreateSerializer(serializers.Serializer):
 #     name = serializers.CharField()
 #     is_active = serializers.BooleanField()
 
-class ProductCreateUpdateSerializer(serializers.Serializer):
-    title = serializers.CharField(min_length=2, max_length=10)
-    description = serializers.CharField()
-    price = serializers.FloatField()
-    category_id = serializers.IntegerField()
-    reviews = serializers.ListField(child=ReviewCreateSerializer)
-    # list_ = serializers.ListField(child=serializers.CharField())
-    # object_ = ObjectCreateSerializer()
-
-    def validate_category_id(self, category_id):
-        if models.Category.objects.filter(id=category_id).count() == 0:
-            raise ValidationError(f'Category with id {category_id} doesnt exist')
 
     # def validate(self, attrs):
     #     id = attrs.get('id')
